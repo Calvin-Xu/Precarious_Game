@@ -1,9 +1,9 @@
-# Precarious--A-Game
+# Precarious!
 A test-based adventure written in Python
 
 This game is created as a challenge for myself.
 
-## Featurres:
+## Features:
 
 * Huge map
 * Nice story
