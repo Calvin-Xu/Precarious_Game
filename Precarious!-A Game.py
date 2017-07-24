@@ -334,6 +334,7 @@ class Trap_hallway(Scene):
             if decision == "drink potion":
                 super().__print__("\nYou certainly feel nauseous...But you can see the hallway as in broad daylight.")
                 super().__print__("\nOh! The agony! You are in pain, but you manage to get past all the hidden dangers and proceed to the next room.")
+                backpack.remove_item("night vision potion")
                 player.hpminus(1)
                 player.hpcheck()
                 return 'combat_room'
