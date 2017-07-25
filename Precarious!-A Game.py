@@ -163,6 +163,10 @@ class Hallway(Scene):
             super().__print__("\nYou go through the gate to your right. Good luck!")
             return 'room2'
 
+        elif response == "forward":
+            super().__print__("\nYou go through the gate in front of you. Good luck!")
+            return 'room3'
+
         else:
             return 'hallway'
 
@@ -253,12 +257,16 @@ class Room3(Scene):
         super().__print__("\nYou have entered an ancient edifice. It appears to be a library or database.")
         super().__print__("\nNow it has turned into a complete maze. Fortunately you have a map of it.")
         super().__print__(dedent("""
+             Goal
+               v
         ______  _____
         | 7|  _____ 4|
         |   1|_______|
         |  |_|  ___2 |
         |  |8 ____|  |
         |____|  _____|
+              ^
+            Start
         """))
         super().__print__("\nType the numbers on the beacons you encounter along the way to pass!")
         time.sleep(2)
