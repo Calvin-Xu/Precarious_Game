@@ -13,6 +13,9 @@ This game is created as a challenge for myself.
 * Health and inventory system
 * And more to discover!
 
+## Play
+Run **main.py** to start game
+
 ## Info
 
 Come and play!
