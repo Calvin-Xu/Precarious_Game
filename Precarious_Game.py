@@ -180,7 +180,7 @@ class Room1(Scene):
         super().__print__("\nTrespasser...")
         super().__print__("\nI charge...thee...")
         super().__print__("\nAnswer...thi...s...rid..dle...")
-        super().__print__("\nOr run...for thy life...")
+        super().__print__("\nOr flee...for thy life...")
         super().__print__("\nMark...")
         super().__print__("\n\"What..is..fast..er...than...war...rp..drive?..Rea..per, ranger, or..r, reporters fr..rom..Houuhg..Koumg [indistinguishable]?...\"")
         time.sleep(2)
@@ -289,7 +289,7 @@ class Room3(Scene):
                                 super().__print__("\n10001010101001010111001010101010101111101010" * 1000)
                                 super().__print__('\nAccessing encrypted files...')
                                 super().__print__('\nDecrypting....')
-                                if randint(0,3) < 4:
+                                if randint(0,3) < 3:
                                     super().__print__("\n\n[SEN281 LOG-]")
                                     super().__print__("\n\n OVERRIDE CODE -- BUILTIN")
                                     super().__print__('\n\n-KRG - 4d7ve9o')
@@ -410,9 +410,10 @@ class Combat_room(Scene):
                         print("10001010101111001010001101111101010" * 1000)
                         super().__print__('\nAccessing encrypted files...')
                         super().__print__('\nDecrypting....')
-                        if randint(0,3) < 4:
-                            super().__print__("\n\n[CMD479 LOG-]")
-                            super().__print__("\n\n -Impervious Grace Maintenance -- CLASSIFIED")
+                        if randint(0,3) < 3:
+                            super().__print__("\n\n[CMD479 LOG-]\n")
+                            super().__print__("-" * 42)
+                            super().__print__("Impervious Grace Maintenance -- CLASSIFIED")
                             super().__print__('\n\n[ADMIN OVERRIDE]-Impervious Grace - r58f7ti')
                             super().__print__('\n\nMaintenance port located on plate 13, {the back}.')
                             super().__print__('\n\n-StsdaRd pr0ceDur53 - ts84hfbidn++]?%')
@@ -424,6 +425,8 @@ class Combat_room(Scene):
                             print("Cool! This might come in handy.")
                         else:
                             super().__print__("\nDecryption failed!")
+                            super().__print__("-" * 10)
+                            super().__print__("\nToo bad that happened.")
                     else:
                         super().__print__("\nYou do not have a *droid service port* to access droid memory bank.")
                 else:
@@ -497,7 +500,7 @@ class Boss(Scene):
                         super().__print__("\nAdmin action override...")
                         super().__print__("100101010001010101010111010101" * 1000)
                         time.sleep(2.56)
-                        print("\n\n Command complete in 2.56 sec")
+                        print("\n\nCommand complete in 2.56 sec")
                         print("-" * 10)
                         super().__print__("\nThe automaton settles down. You just casually grab the obsidian tablet and go away!")
                         player.hpcheck()
@@ -506,8 +509,11 @@ class Boss(Scene):
                         print("\nIncorrect password. Access denied.")
                         super().__print__("\nThe automaton roars and sends you crashing into the floor.")
                         return 'death'
+                else:
+                    print("\nDoes not compute.")
+                    return 'boss'
             else:
-                print("You really can't try anything else.")
+                print("\nYou really can't try anything else.")
                 return 'boss'
 
         else:
@@ -520,6 +526,7 @@ class Win(Scene):
         super().__print__("\nYou obatined the obsidian tablet, the sacred artifact from the deadly ruins! You won!")
         super().__print__("\nThank you for playing this game. Copyright Calvin Xu.")
         super().__print__("\n2017.7.24")
+        super().__print__("\n(Certain events may be different on each playthrough.)")
         time.sleep(2)
         exit(0)
 
