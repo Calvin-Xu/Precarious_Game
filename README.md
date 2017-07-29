@@ -15,6 +15,7 @@ This game is created as a challenge for myself.
 
 ## Play
 ```$ python setup.py install```
+
 ```$ python main.py```
 
 (Please use Python 3.6)
