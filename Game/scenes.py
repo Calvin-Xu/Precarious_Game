@@ -3,8 +3,8 @@ from random import randint
 from textwrap import dedent
 from time import sleep
 
-import inventory
-import health
+import Game.inventory
+import Game.health
 
 class Scene(object):
 
@@ -102,9 +102,9 @@ class Room1(Scene):
 
         if answer_riddle == "HK reporters":
             super().__print__("\nThe hologram nods, and gives you 1 HP. You recognize this as the ancient practice of +1s.")
-            health.player.hpplus(1)
-            health.player.hpcheck()
-            inventory.backpack.potion()
+            Game.health.player.hpplus(1)
+            Game.health.player.hpcheck()
+            Game.inventory.backpack.potion()
             super().__print__("\nYou proceed to the next room.")
 
             return 'trap_hallway'
@@ -112,9 +112,9 @@ class Room1(Scene):
         else:
             super().__print__("\nThe emperor gets mad at you. He shouts:\"Naive!\";\"You are still too young!\";\"I'm angry.\" And suddenly you feel life taken away from you.")
             super().__print__("\nYou have a bad feeling about this.")
-            health.player.hpminus(2)
-            health.player.hpcheck()
-            inventory.backpack.potion()
+            Game.health.player.hpminus(2)
+            Game.health.player.hpcheck()
+            Game.inventory.backpack.potion()
             super().__print__("\nYou proceed to the next room.")
 
             return 'trap_hallway'
@@ -135,27 +135,27 @@ class Room2(Scene):
             super().__print__("\nThe guardian's head falls clear off! The entire beast crumbles. Then there was silence. You defeated it!")
             super().__print__("\nYou even manage to scavenge a *droid service port*! Try use it on droids.")
             sleep(2)
-            inventory.backpack.add_item("droid service port")
+            Game.inventory.backpack.add_item("droid service port")
             super().__print__("\nYou proceed to the next room intact.")
-            health.player.hpcheck()
+            Game.health.player.hpcheck()
             return 'room3'
 
         elif fire_answer == "eye":
             super().__print__("\nThe projectile pierces through many lenses but the eye is still largely intact.")
             super().__print__("\nThe guardian goes berserk at you and shot blue plasma. But its aim is affected so you are not too badly hurt. Then it exploded.")
-            health.player.hpminus(1)
-            health.player.hpcheck()
+            Game.health.player.hpminus(1)
+            Game.health.player.hpcheck()
             super().__print__("\nYou even manage to scavenge a *droid service port*! Try use it on droids.")
             sleep(2)
-            inventory.backpack.add_item("droid service port")
+            Game.inventory.backpack.add_item("droid service port")
             super().__print__("\nYou are hurt but you proceed to the next room.")
             return 'room3'
 
         elif fire_answer == "leg":
             super().__print__("\nYou shoot off 2 legs, but 8 remain.")
             super().__print__("\nStill, the guardian temporarily loses balance and its shot does hit you squarely.")
-            health.player.hpminus(2)
-            health.player.hpcheck()
+            Game.health.player.hpminus(2)
+            Game.health.player.hpcheck()
             super().__print__("\nYou are hurt, but you hide yourself and proceed to the next room while the beast recovers.")
             return 'room3'
 
@@ -198,7 +198,7 @@ class Room3(Scene):
                         sleep(2)
                         hack_answer = input("\nTry hacking droid? Type [y] or [n]: ")
                         if hack_answer == "y":
-                            if inventory.backpack.item_stat("droid service port"):
+                            if Game.inventory.backpack.item_stat("droid service port"):
                                 super().__print__("\n10001010101001010111001010101010101111101010" * 1000)
                                 super().__print__('\nAccessing encrypted files...')
                                 super().__print__('\nDecrypting....')
@@ -213,7 +213,7 @@ class Room3(Scene):
                                     sleep(1)
                                     print("10001010101001010111001010101010101111101010" * 10)
                                     print("\n\n[System Report] Corrupt data. Further access failed.")
-                                    inventory.inventory.backpack.add_item("code1")
+                                    Game.inventory.backpack.add_item("code1")
                                     print("\nCool! This might come in handy.")
                                 else:
                                     super().__print__("\nDecryption failed!")
@@ -225,8 +225,8 @@ class Room3(Scene):
                             super().__print__("\nOkay. It's probably safer not to mess around.")
                     else:
                         super().__print__("\nDodge! It's a sentry droid and it fired at you. You are hurt but fortunately it's set to stun.")
-                        health.player.hpminus(1)
-                        health.player.hpcheck()
+                        Game.health.player.hpminus(1)
+                        Game.health.player.hpcheck()
                 else:
                     super().__print__("\nOkay. It's probably safer not to mess around.")
             else:
@@ -236,8 +236,8 @@ class Room3(Scene):
             super().__print__("\nYou did not type a number and the system locked you in.")
             return 'death'
 
-        inventory.backpack.potion()
-        health.player.hpcheck()
+        Game.inventory.backpack.potion()
+        Game.health.player.hpcheck()
         super().__print__("\nYou proceed to the next room.")
         return 'trap_hallway'
 
@@ -249,7 +249,7 @@ class TrapHallway(Scene):
         super().__print__("\nIt's a trap! You need to be able to see to get through.")
         sleep(2)
 
-        if inventory.backpack.item_stat("night vision potion"):
+        if Game.inventory.backpack.item_stat("night vision potion"):
             print("\nWhat do you do? Drink the suspicious *night vision potion*, or turn on the millenia old lighting system?")
             sleep(2)
             decision = input("\nType [drink potion] or [turn on lighting]: ")
@@ -257,17 +257,17 @@ class TrapHallway(Scene):
             if decision == "drink potion":
                 super().__print__("\nYou certainly feel nauseous...But you can see the hallway as in broad daylight.")
                 super().__print__("\nOh! The agony! You are in pain, but you manage to get past all the hidden dangers and proceed to the next room.")
-                inventory.backpack.remove_item("night vision potion")
-                health.player.hpminus(1)
-                health.player.hpcheck()
+                Game.inventory.backpack.remove_item("night vision potion")
+                Game.health.player.hpminus(1)
+                Game.health.player.hpcheck()
                 return 'combat_room'
             elif decision == "turn on lighting":
                 super().__print__("\nYou turn on the lighting. You look at the hideous traps for one split second before alarms go off!")
                 super().__print__("\nThe defense mechanisms spring to life! You try to take cover, but there's none.")
                 super().__print__("\nThree energy blasts shoot you squarely in the chest. Fortunately they are set to stun, and after millenia the wattage is low.")
                 super().__print__("\nYou survive but is hurt badly. You proceed to the next room.")
-                health.player.hpminus(3)
-                health.player.hpcheck()
+                Game.health.player.hpminus(3)
+                Game.health.player.hpcheck()
                 return 'combat_room'
             else:
                 print("DOES NOT COMPUTE!")
@@ -282,8 +282,8 @@ class TrapHallway(Scene):
                 super().__print__("\nThe defense mechanisms spring to life! You try to take cover, but there's none.")
                 super().__print__("\nThree energy blasts shoot you squarely in the chest. Fortunately they are set to stun, and after millenia the wattage is low.")
                 super().__print__("\nYou survive but is hurt badly. You proceed to the next room.")
-                health.player.hpminus(3)
-                health.player.hpcheck()
+                Game.health.player.hpminus(3)
+                Game.health.player.hpcheck()
                 return 'combat_room'
             else:
                 print("DOES NOT COMPUTE!")
@@ -307,20 +307,20 @@ class CombatRoom(Scene):
                 return 'boss'
             else:
                 super().__print__("\nThe droid spots you! You hear the screeching sound of a target lock. A fusillade then followed.")
-                health.player.hpminus(3)
-                health.player.hpcheck()
+                Game.health.player.hpminus(3)
+                Game.health.player.hpcheck()
                 super().__print__("\nWhat a miracle! You survive and proceed to the next room.")
                 return 'boss'
 
         elif combat_answer == "duel":
             super().__print__("\nYou hop onto the droid's neck and assault it with a monkey wrench.")
-            if health.player.hp >= 3:
+            if Game.health.player.hp >= 3:
                 super().__print__("\nIt's more effective than you previously think! You are strong enough that the droid cannot shake you off.")
                 super().__print__("\nThe droid crumpled. Would you like to look at its memory banks?")
                 sleep(2)
                 hack_answer = input("\nType [y] or [n]: ")
                 if hack_answer == "y":
-                    if inventory.backpack.item_stat("droid service port"):
+                    if Game.inventory.backpack.item_stat("droid service port"):
                         print("")
                         print("10001010101111001010001101111101010" * 1000)
                         super().__print__('\nAccessing encrypted files...')
@@ -336,7 +336,7 @@ class CombatRoom(Scene):
                             print("")
                             print("1000101011110100101001010111001010101010101111101010" * 10)
                             super().__print__("\n\n[System Report] Corrupt data. Further access failed.")
-                            inventory.backpack.add_item("code2")
+                            Game.inventory.backpack.add_item("code2")
                             print("Cool! This might come in handy.")
                         else:
                             super().__print__("\nDecryption failed!")
@@ -355,7 +355,7 @@ class CombatRoom(Scene):
             super().__print__("DOES NOT COMPUTE!")
             return "combat_room"
 
-        health.player.hpcheck()
+        Game.health.player.hpcheck()
         super().__print__("\nYou proceed to the next room.")
         return 'boss'
 
@@ -377,22 +377,22 @@ class Boss(Scene):
         if weapon == "railgun":
             super().__print__("\nYou knock the automaton over with your railgun!")
             super().__print__("\nIt manages to fire a shot at you, but you are not too badly hurt.")
-            health.player.hpminus(2)
-            health.player.hpcheck()
+            Game.health.player.hpminus(2)
+            Game.health.player.hpcheck()
             super().__print__("\nIt tries to get up, and in the commotion grab the obsidian tablet and ran away.")
             return 'win'
 
         elif weapon == "plasma cutter":
             super().__print__("\nYou cut its tail off. It loses it primary weapon!")
             super().__print__("\nBut it still manages to hit you with one of its mechanical legs. Fortunately the damage is relatively light.")
-            health.player.hpminus(1)
-            health.player.hpcheck()
+            Game.health.player.hpminus(1)
+            Game.health.player.hpcheck()
             super().__print__("\nYou then swiftly maim the beast more and more. Eventually it crumbles. You grab the obsidian tablet and walk away.")
             return 'win'
 
         elif weapon == "something else":
 
-            if inventory.backpack.item_stat("code1") or inventory.backpack.item_stat("code2") and inventory.backpack.item_stat("droid service port"):
+            if Game.inventory.backpack.item_stat("code1") or Game.inventory.backpack.item_stat("code2") and Game.inventory.backpack.item_stat("droid service port"):
                 super().__print__("\nWhat do you do? Manual override? This suddenly occured to you.")
                 sleep(2)
                 answer = input("\nType [override]: ")
@@ -418,7 +418,7 @@ class Boss(Scene):
                         print("\n\nCommand complete in 2.56 sec")
                         print("-" * 10)
                         super().__print__("\nThe automaton settles down. You just casually grab the obsidian tablet and go away!")
-                        health.player.hpcheck()
+                        Game.health.player.hpcheck()
                         return 'win'
                     else:
                         print("\nIncorrect password. Access denied.")

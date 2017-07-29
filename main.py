@@ -1,8 +1,8 @@
-import engine
-import scene_director
+import Game.engine
+import Game.scene_director
 
-Scene_instances = scene_director.SceneDirector('welcome')
+Scene_instances = Game.scene_director.SceneDirector('welcome')
 
-game = engine.Engine(Scene_instances)
+game = Game.engine.Engine(Scene_instances)
 
 game.play()
