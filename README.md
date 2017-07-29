@@ -14,7 +14,10 @@ This game is created as a challenge for myself.
 * And more to discover!
 
 ## Play
-Run **main.py** to start game
+```$ python setup.py install```
+```$ python main.py```
+
+(Please use Python 3.6)
 
 ## Info
 

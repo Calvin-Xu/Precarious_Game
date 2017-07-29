@@ -9,11 +9,11 @@ config = {
     'url': 'https://github.com/Calvin-Xu/Precarious_Game',
     'download_url': 'https://github.com/Calvin-Xu/Precarious_Game',
     'author_email': 'calvinxu806@vip.163.com',
-    'version': '1.5',
+    'version': '0.1',
     'install_requires': ['nose'],
     'packages': ['Game'],
     'scripts': [],
-    'name': 'Precarious!'
+    'name': 'Precarious'
 }
 
 setup(**config)
