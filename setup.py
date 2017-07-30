@@ -10,7 +10,7 @@ config = {
     'download_url': 'https://github.com/Calvin-Xu/Precarious_Game',
     'author_email': 'calvinxu806@vip.163.com',
     'version': '0.1',
-    'install_requires': ['nose'],
+    'install_requires': ['pytest'],
     'packages': ['Game'],
     'scripts': [],
     'name': 'Precarious'

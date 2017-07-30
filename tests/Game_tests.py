@@ -1,4 +1,4 @@
-from nose.tools import *
+from pytest import *
 import Game.engine
 import Game.health
 import Game.inventory
