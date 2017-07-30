@@ -1,9 +1,3 @@
-
-bin/
-.Python
-lib/python3.6/site-packages/py/_std.py
-docs/
-include/
-lib/
-pip-selfcheck.json
-
+tests/__pycache__
+Game/__pycache__
+.cache
