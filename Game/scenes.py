@@ -417,7 +417,7 @@ class Boss(Scene):
                         sleep(2.56)
                         print("\n\nCommand complete in 2.56 sec")
                         print("-" * 10)
-                        super().__print__("\nThe automaton settles down. You just casually grab the obsidian tablet and go away!")
+                        super().__print__("\nThe automaton settles down. You just casually grab the obsidian tablet and walk away!")
                         Game.health.player.hpcheck()
                         return 'win'
                     else:
@@ -441,6 +441,6 @@ class Win(Scene):
         super().__print__("\nYou obatined the obsidian tablet, the sacred artifact from the deadly ruins! You won!")
         super().__print__("\nThank you for playing this game. Copyright Calvin Xu.")
         super().__print__("\n2017.7.24")
-        super().__print__("\n(Certain events may be different on each playthrough.)")
+        super().__print__("\n(Certain events may be different on each playthrough.)\n\n")
         sleep(2)
         exit(0)
