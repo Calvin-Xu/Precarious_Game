@@ -1,5 +1,5 @@
 # Precarious!
-A test-based adventure written in Python
+A text-based adventure written in Python
 
 This game is created as a challenge for myself.
 
